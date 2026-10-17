@@ -1,0 +1,999 @@
+{
+  "version": "pashumitra-v1",
+  "targets": {
+    "menu": {
+      "label": {
+        "en": "Open menu",
+        "hi": "मेन्यू खोलें",
+        "hinglish": "Open menu"
+      },
+      "roles": [
+        "farmer",
+        "paravet",
+        "vet",
+        "lab",
+        "admin"
+      ],
+      "pages": [
+        "*"
+      ],
+      "fallback": null
+    },
+    "nav-home": {
+      "label": {
+        "en": "Overview",
+        "hi": "ओवरव्यू",
+        "hinglish": "Overview"
+      },
+      "roles": [
+        "farmer",
+        "paravet",
+        "vet",
+        "lab",
+        "admin"
+      ],
+      "pages": [
+        "*"
+      ],
+      "fallback": null
+    },
+    "nav-animals": {
+      "label": {
+        "en": "My animals / Animal records",
+        "hi": "पशु रिकॉर्ड",
+        "hinglish": "My animals / Animal records"
+      },
+      "roles": [
+        "farmer",
+        "paravet",
+        "vet",
+        "admin"
+      ],
+      "pages": [
+        "*"
+      ],
+      "fallback": "menu"
+    },
+    "nav-report": {
+      "label": {
+        "en": "Report symptoms",
+        "hi": "लक्षण रिपोर्ट करें",
+        "hinglish": "Report symptoms"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "*"
+      ],
+      "fallback": "menu"
+    },
+    "nav-cases": {
+      "label": {
+        "en": "Health reports / Case worklist",
+        "hi": "स्वास्थ्य रिपोर्ट",
+        "hinglish": "Health reports / Case worklist"
+      },
+      "roles": [
+        "farmer",
+        "paravet",
+        "vet",
+        "admin"
+      ],
+      "pages": [
+        "*"
+      ],
+      "fallback": "menu"
+    },
+    "nav-outbreaks": {
+      "label": {
+        "en": "Outbreak map",
+        "hi": "प्रकोप मानचित्र",
+        "hinglish": "Outbreak map"
+      },
+      "roles": [
+        "paravet",
+        "vet",
+        "admin"
+      ],
+      "pages": [
+        "*"
+      ],
+      "fallback": "menu"
+    },
+    "nav-lab": {
+      "label": {
+        "en": "Laboratory requests",
+        "hi": "प्रयोगशाला अनुरोध",
+        "hinglish": "Laboratory requests"
+      },
+      "roles": [
+        "lab"
+      ],
+      "pages": [
+        "*"
+      ],
+      "fallback": "menu"
+    },
+    "register-animal": {
+      "label": {
+        "en": "Register animal",
+        "hi": "पशु दर्ज करें",
+        "hinglish": "Register animal"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "animals"
+      ],
+      "fallback": "nav-animals"
+    },
+    "animal-lookup": {
+      "label": {
+        "en": "12-digit Pashu Aadhaar",
+        "hi": "12 अंकों की पशु पहचान",
+        "hinglish": "12-digit Pashu Aadhaar"
+      },
+      "roles": [
+        "farmer",
+        "paravet",
+        "vet",
+        "admin"
+      ],
+      "pages": [
+        "animals"
+      ],
+      "fallback": "nav-animals"
+    },
+    "animal-list": {
+      "label": {
+        "en": "Animal records",
+        "hi": "पशुओं की सूची",
+        "hinglish": "Animal records"
+      },
+      "roles": [
+        "farmer",
+        "paravet",
+        "vet",
+        "admin"
+      ],
+      "pages": [
+        "animals"
+      ],
+      "fallback": "nav-animals"
+    },
+    "animal-selector": {
+      "label": {
+        "en": "Animal",
+        "hi": "पशु चुनें",
+        "hinglish": "Animal"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "symptom-fever": {
+      "label": {
+        "en": "Fever",
+        "hi": "बुखार",
+        "hinglish": "Fever"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "symptom-cough": {
+      "label": {
+        "en": "Coughing",
+        "hi": "खांसी",
+        "hinglish": "Coughing"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "symptom-nasal_discharge": {
+      "label": {
+        "en": "Nasal discharge",
+        "hi": "नाक बहना",
+        "hinglish": "Nasal discharge"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "symptom-drooling": {
+      "label": {
+        "en": "Drooling",
+        "hi": "लार टपकना",
+        "hinglish": "Drooling"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "symptom-skin_lesions": {
+      "label": {
+        "en": "Skin lesions / nodules",
+        "hi": "त्वचा पर गांठें",
+        "hinglish": "Skin lesions / nodules"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "symptom-mouth_foot_lesions": {
+      "label": {
+        "en": "Mouth / foot lesions",
+        "hi": "मुंह या पैर में घाव",
+        "hinglish": "Mouth / foot lesions"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "symptom-diarrhea": {
+      "label": {
+        "en": "Diarrhea",
+        "hi": "दस्त",
+        "hinglish": "Diarrhea"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "symptom-weakness": {
+      "label": {
+        "en": "Weakness",
+        "hi": "कमजोरी",
+        "hinglish": "Weakness"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "symptom-swelling": {
+      "label": {
+        "en": "Swelling",
+        "hi": "सूजन",
+        "hinglish": "Swelling"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "appetite": {
+      "label": {
+        "en": "Appetite",
+        "hi": "भूख",
+        "hinglish": "Appetite"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "activity": {
+      "label": {
+        "en": "Activity",
+        "hi": "गतिविधि",
+        "hinglish": "Activity"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "duration": {
+      "label": {
+        "en": "Symptoms noticed for (hours)",
+        "hi": "लक्षणों की अवधि (घंटे)",
+        "hinglish": "Symptoms noticed for (hours)"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "temperature": {
+      "label": {
+        "en": "Temperature (°C)",
+        "hi": "तापमान",
+        "hinglish": "Temperature (°C)"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "milk": {
+      "label": {
+        "en": "Milk production drop (%)",
+        "hi": "दूध में कमी",
+        "hinglish": "Milk production drop (%)"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "mortality": {
+      "label": {
+        "en": "Deaths observed in the herd",
+        "hi": "झुंड में देखी गई मृत्यु",
+        "hinglish": "Deaths observed in the herd"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "vaccination-status": {
+      "label": {
+        "en": "Vaccination status",
+        "hi": "टीकाकरण की स्थिति",
+        "hinglish": "Vaccination status"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "contact": {
+      "label": {
+        "en": "Recent animal contact or movement",
+        "hi": "हाल का संपर्क या आवागमन",
+        "hinglish": "Recent animal contact or movement"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "animal-photo": {
+      "label": {
+        "en": "Animal photo",
+        "hi": "पशु की फोटो",
+        "hinglish": "Animal photo"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "voice-note": {
+      "label": {
+        "en": "Voice note file",
+        "hi": "वॉइस नोट फ़ाइल",
+        "hinglish": "Voice note file"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "submit-report": {
+      "label": {
+        "en": "Submit health report",
+        "hi": "स्वास्थ्य रिपोर्ट जमा करें",
+        "hinglish": "Submit health report"
+      },
+      "roles": [
+        "farmer",
+        "paravet"
+      ],
+      "pages": [
+        "report"
+      ],
+      "fallback": "nav-report"
+    },
+    "animal-history": {
+      "label": {
+        "en": "History tab",
+        "hi": "इतिहास टैब",
+        "hinglish": "History tab"
+      },
+      "roles": [
+        "farmer",
+        "paravet",
+        "vet",
+        "admin"
+      ],
+      "pages": [
+        "animal_detail"
+      ],
+      "fallback": "animal-list"
+    },
+    "vaccinations": {
+      "label": {
+        "en": "Vaccinations tab",
+        "hi": "टीकाकरण टैब",
+        "hinglish": "Vaccinations tab"
+      },
+      "roles": [
+        "farmer",
+        "paravet",
+        "vet",
+        "admin"
+      ],
+      "pages": [
+        "animal_detail"
+      ],
+      "fallback": "animal-list"
+    },
+    "case-list": {
+      "label": {
+        "en": "Health reports list",
+        "hi": "रिपोर्ट सूची",
+        "hinglish": "Health reports list"
+      },
+      "roles": [
+        "farmer",
+        "paravet",
+        "vet",
+        "admin"
+      ],
+      "pages": [
+        "home",
+        "cases",
+        "animal_detail"
+      ],
+      "fallback": "nav-cases"
+    },
+    "case-status": {
+      "label": {
+        "en": "Case timeline and status",
+        "hi": "रिपोर्ट की स्थिति और समयरेखा",
+        "hinglish": "Case timeline and status"
+      },
+      "roles": [
+        "farmer",
+        "paravet",
+        "vet",
+        "admin"
+      ],
+      "pages": [
+        "case_detail"
+      ],
+      "fallback": "nav-cases"
+    },
+    "risk-panel": {
+      "label": {
+        "en": "Explainable risk score",
+        "hi": "जोखिम स्कोर और कारण",
+        "hinglish": "Explainable risk score"
+      },
+      "roles": [
+        "farmer",
+        "paravet",
+        "vet",
+        "admin"
+      ],
+      "pages": [
+        "case_detail"
+      ],
+      "fallback": "nav-cases"
+    },
+    "vet-queue": {
+      "label": {
+        "en": "Priority worklist",
+        "hi": "प्राथमिकता वाले मामले",
+        "hinglish": "Priority worklist"
+      },
+      "roles": [
+        "vet"
+      ],
+      "pages": [
+        "home"
+      ],
+      "fallback": "nav-home"
+    },
+    "vet-claim": {
+      "label": {
+        "en": "Claim case",
+        "hi": "मामला स्वीकार करें",
+        "hinglish": "Claim case"
+      },
+      "roles": [
+        "vet"
+      ],
+      "pages": [
+        "case_detail"
+      ],
+      "fallback": "nav-cases"
+    },
+    "vet-diagnosis": {
+      "label": {
+        "en": "Professional diagnosis / findings",
+        "hi": "पेशेवर निष्कर्ष",
+        "hinglish": "Professional diagnosis / findings"
+      },
+      "roles": [
+        "vet"
+      ],
+      "pages": [
+        "case_detail"
+      ],
+      "fallback": "nav-cases"
+    },
+    "vet-recommendations": {
+      "label": {
+        "en": "Veterinary recommendations",
+        "hi": "पशु चिकित्सक की सिफारिशें",
+        "hinglish": "Veterinary recommendations"
+      },
+      "roles": [
+        "vet"
+      ],
+      "pages": [
+        "case_detail"
+      ],
+      "fallback": "nav-cases"
+    },
+    "sample-request": {
+      "label": {
+        "en": "Laboratory test requested",
+        "hi": "प्रयोगशाला जांच अनुरोध",
+        "hinglish": "Laboratory test requested"
+      },
+      "roles": [
+        "vet"
+      ],
+      "pages": [
+        "case_detail"
+      ],
+      "fallback": "nav-cases"
+    },
+    "treatment": {
+      "label": {
+        "en": "Treatment / control action note",
+        "hi": "उपचार और नियंत्रण टिप्पणी",
+        "hinglish": "Treatment / control action note"
+      },
+      "roles": [
+        "vet"
+      ],
+      "pages": [
+        "case_detail"
+      ],
+      "fallback": "nav-cases"
+    },
+    "lab-requests": {
+      "label": {
+        "en": "Requests in your district",
+        "hi": "जिले के जांच अनुरोध",
+        "hinglish": "Requests in your district"
+      },
+      "roles": [
+        "lab"
+      ],
+      "pages": [
+        "home",
+        "laboratory"
+      ],
+      "fallback": "nav-lab"
+    },
+    "lab-result": {
+      "label": {
+        "en": "Laboratory findings",
+        "hi": "प्रयोगशाला निष्कर्ष",
+        "hinglish": "Laboratory findings"
+      },
+      "roles": [
+        "lab"
+      ],
+      "pages": [
+        "home",
+        "laboratory"
+      ],
+      "fallback": "lab-requests"
+    },
+    "outbreak-map": {
+      "label": {
+        "en": "Outbreak map",
+        "hi": "प्रकोप मानचित्र",
+        "hinglish": "Outbreak map"
+      },
+      "roles": [
+        "paravet",
+        "vet",
+        "admin"
+      ],
+      "pages": [
+        "home",
+        "outbreaks"
+      ],
+      "fallback": "nav-outbreaks"
+    },
+    "admin-clusters": {
+      "label": {
+        "en": "Recent clusters",
+        "hi": "हाल के क्लस्टर",
+        "hinglish": "Recent clusters"
+      },
+      "roles": [
+        "admin"
+      ],
+      "pages": [
+        "home"
+      ],
+      "fallback": "nav-home"
+    },
+    "admin-confirmation": {
+      "label": {
+        "en": "Authority outbreak confirmation",
+        "hi": "अधिकारी द्वारा प्रकोप की पुष्टि",
+        "hinglish": "Authority outbreak confirmation"
+      },
+      "roles": [
+        "admin"
+      ],
+      "pages": [
+        "home"
+      ],
+      "fallback": "admin-clusters"
+    }
+  },
+  "intents": [
+    {
+      "id": "photo",
+      "target": "animal-photo",
+      "pattern": "photo|photograph|camera|tasveer|tasvir|फोटो|तस्वीर"
+    },
+    {
+      "id": "voice_note",
+      "target": "voice-note",
+      "pattern": "voice note|audio file|recording upload|वॉइस नोट"
+    },
+    {
+      "id": "add_animal",
+      "target": "register-animal",
+      "pattern": "add.{0,12}animal|register.{0,12}animal|animal.{0,12}(add|register)|pashu.{0,12}(jod|darj)|पशु.{0,15}(जोड़|दर्ज)|naya pashu"
+    },
+    {
+      "id": "vaccination",
+      "target": "vaccinations",
+      "pattern": "vaccin|teeka|tika|टीक"
+    },
+    {
+      "id": "history",
+      "target": "animal-history",
+      "pattern": "history|itihaas|इतिहास"
+    },
+    {
+      "id": "lookup",
+      "target": "animal-lookup",
+      "pattern": "aadhaar|aadhar|ear.?tag|आधार"
+    },
+    {
+      "id": "sample",
+      "target": "sample-request",
+      "pattern": "sample|pcr|test request|नमूना"
+    },
+    {
+      "id": "diagnosis",
+      "target": "vet-diagnosis",
+      "pattern": "findings|diagnosis field|निष्कर्ष"
+    },
+    {
+      "id": "recommendations",
+      "target": "vet-recommendations",
+      "pattern": "recommendation|सिफारिश"
+    },
+    {
+      "id": "treatment",
+      "target": "treatment",
+      "pattern": "treatment.{0,12}(note|action)|control action|उपचार.{0,12}टिप्पणी"
+    },
+    {
+      "id": "lab_result",
+      "target": "lab-result",
+      "pattern": "lab.{0,10}(result|findings)|result field|लैब.{0,10}परिणाम"
+    },
+    {
+      "id": "urgent_cases",
+      "target": "vet-queue",
+      "pattern": "urgent cases|assigned cases|priority|worklist|तत्काल मामले"
+    },
+    {
+      "id": "outbreak",
+      "target": "outbreak-map",
+      "pattern": "outbreak|cluster|hotspot|प्रकोप|क्लस्टर"
+    },
+    {
+      "id": "track",
+      "target": "nav-cases",
+      "pattern": "report.{0,25}(where|track|kaha|kahan|ka hua|status)|where.{0,20}report|my reports|meri report|रिपोर्ट.{0,20}(कहाँ|स्थिति|ट्रैक)"
+    },
+    {
+      "id": "report",
+      "target": "nav-report",
+      "pattern": "report|रिपोर्ट"
+    },
+    {
+      "id": "animals",
+      "target": "nav-animals",
+      "pattern": "my animals|animal record|mere pashu|मेरे पशु"
+    },
+    {
+      "id": "help",
+      "target": "nav-home",
+      "pattern": "help|website|feature|kaise|madad|मदद|वेबसाइट"
+    }
+  ],
+  "symptoms": [
+    {
+      "key": "fever",
+      "pattern": "fever|bukha+r|बुखार"
+    },
+    {
+      "key": "cough",
+      "pattern": "cough(?:ing)?|kha+nsi|khasi|खांसी|खाँसी"
+    },
+    {
+      "key": "nasal_discharge",
+      "pattern": "nasal discharge|runny nose|naak bah|नाक बह"
+    },
+    {
+      "key": "drooling",
+      "pattern": "drool(?:ing)?|laar|लार"
+    },
+    {
+      "key": "skin_lesions",
+      "pattern": "skin (?:lesions?|nodules?)|lumps?|gaanth|ganth|गांठ|गाँठ"
+    },
+    {
+      "key": "mouth_foot_lesions",
+      "pattern": "mouth (?:sores?|lesions?)|foot (?:sores?|lesions?)|mouth.?foot lesions|munh.{0,8}ghav|मुंह.{0,8}घाव|पैर.{0,8}घाव"
+    },
+    {
+      "key": "diarrhea",
+      "pattern": "diarrh(?:ea|oea)|loose (?:stools?|motions?)|dast|दस्त"
+    },
+    {
+      "key": "weakness",
+      "pattern": "weak(?:ness)?|kamzor\\w*|कमजोर\\S*"
+    },
+    {
+      "key": "swelling",
+      "pattern": "swell(?:ing|en)?|soojan|sujan|सूजन"
+    }
+  ],
+  "messages": {
+    "intro": {
+      "en": "Hello, I’m PashuMitra. Describe observations or ask how to use this website. I can point and explain; you do every click and submission.",
+      "hi": "नमस्ते! मैं पशुमित्र हूँ। लक्षण बताइए या वेबसाइट की मदद मांगिए। मैं विकल्प दिखाता हूँ; क्लिक और सबमिट आप करेंगे।",
+      "hinglish": "Namaste! Main PashuMitra hoon. Symptoms batayein ya website ki madad maangein. Main options dikhata hoon; click aur submit aap karenge."
+    },
+    "unknown": {
+      "en": "I can guide reporting, animal records, photos, report status and the care workflow. Try a short question or choose a help topic. I cannot give medicine or dosage advice.",
+      "hi": "मैं रिपोर्ट, पशु रिकॉर्ड, फोटो और रिपोर्ट की स्थिति समझा सकता हूँ। छोटा सवाल पूछिए या विषय चुनिए। मैं दवा या खुराक नहीं बताता।",
+      "hinglish": "Main reports, animal records, photo aur report status samjha sakta hoon. Chhota sawaal ya help topic chuniye. Main dawa ya dosage nahi batata."
+    },
+    "consent": {
+      "en": "Allow page guidance first. I use registered control names, not screenshots or form contents. You can revoke this below.",
+      "hi": "पहले पेज मार्गदर्शन की अनुमति दें। मैं केवल दर्ज विकल्पों के नाम उपयोग करता हूँ, स्क्रीनशॉट या फ़ॉर्म की जानकारी नहीं। अनुमति वापस ली जा सकती है।",
+      "hinglish": "Pehle page guidance allow kijiye. Sirf registered options ke naam use hote hain, screenshots ya form contents nahi."
+    },
+    "denied": {
+      "en": "That control is not available for your role. Use the options in your own workspace.",
+      "hi": "यह विकल्प आपकी भूमिका के लिए उपलब्ध नहीं है। अपने कार्यक्षेत्र के विकल्प उपयोग करें।",
+      "hinglish": "Yeh option aapke role ke liye available nahi hai. Apne workspace ke options use kijiye."
+    },
+    "missing": {
+      "en": "This control is not currently available. Open the relevant record or complete the previous workflow step yourself, then ask again.",
+      "hi": "यह विकल्प अभी उपलब्ध नहीं है। संबंधित रिकॉर्ड खोलें या पिछला चरण पूरा करें, फिर पूछें।",
+      "hinglish": "Yeh option abhi available nahi hai. Sahi record kholiye ya pichhla step poora kijiye, phir poochhiye."
+    },
+    "point": {
+      "en": "Tap the highlighted option.",
+      "hi": "दिखाए गए विकल्प पर दबाएं।",
+      "hinglish": "Dikhaye gaye option par tap kijiye."
+    },
+    "down": {
+      "en": "Scroll down yourself to find this option.",
+      "hi": "इस विकल्प के लिए नीचे स्क्रॉल कीजिए।",
+      "hinglish": "Is option ke liye neeche scroll kijiye."
+    },
+    "up": {
+      "en": "Scroll up yourself to find this option.",
+      "hi": "इस विकल्प के लिए ऊपर स्क्रॉल कीजिए।",
+      "hinglish": "Is option ke liye upar scroll kijiye."
+    },
+    "clarify": {
+      "en": "Please verify these observations. Missing information stays unknown. I have not changed your report.",
+      "hi": "कृपया इन बातों की पुष्टि करें। जो जानकारी नहीं दी गई वह अज्ञात है। आपकी रिपोर्ट नहीं बदली गई है।",
+      "hinglish": "In observations ko verify kijiye. Jo nahi bataya woh unknown hai. Report change nahi hui hai."
+    },
+    "verified": {
+      "en": "Observations verified for this animal in this session. Use the Show controls buttons to enter them yourself; recheck the animal selected in the report.",
+      "hi": "इस पशु के लक्षण इस सत्र में सत्यापित हैं। विकल्प दिखाने वाले बटन से मार्गदर्शन लें और स्वयं भरें। रिपोर्ट में चुना पशु जांचें।",
+      "hinglish": "Is animal ke observations is session mein verify hain. Show controls se madad lekar khud bhariye. Report mein selected animal dobara check kijiye."
+    },
+    "insufficient": {
+      "en": "There is not enough information for an assessment. Do not interpret missing information as normal. Describe one animal and verify the observations.",
+      "hi": "आकलन के लिए पर्याप्त जानकारी नहीं है। जानकारी न होना सामान्य होने का प्रमाण नहीं है। एक पशु के लक्षण बताएं और सत्यापित करें।",
+      "hinglish": "Assessment ke liye jaankari kaafi nahi hai. Unknown ko normal na samjhein. Ek animal ke observations batayein aur verify karein."
+    },
+    "attention": {
+      "en": "The existing rule engine recommends veterinary review of these observations. This is preliminary decision support, not a diagnosis.",
+      "hi": "मौजूदा नियम प्रणाली इन लक्षणों के लिए पशु चिकित्सक की समीक्षा सुझाती है। यह प्रारंभिक सहायता है, निदान नहीं।",
+      "hinglish": "Existing rule engine in observations ke liye veterinary review suggest karta hai. Yeh preliminary help hai, diagnosis nahi."
+    },
+    "urgent": {
+      "en": "The existing rule engine flags urgent veterinary attention. Contact a veterinary professional promptly. This assistant cannot arrange a visit or prescribe treatment.",
+      "hi": "मौजूदा नियम प्रणाली तुरंत पशु चिकित्सक से संपर्क करने का संकेत देती है। शीघ्र संपर्क करें। यह सहायक डॉक्टर नहीं बुलाता या इलाज नहीं लिखता।",
+      "hinglish": "Existing rule engine urgent veterinary attention flag karta hai. Jaldi veterinarian se sampark kijiye. Yeh assistant visit arrange ya treatment prescribe nahi karta."
+    },
+    "offline": {
+      "en": "Offline help can point to controls. An assessment or current report status needs a connection; no result has been invented.",
+      "hi": "ऑफ़लाइन मदद विकल्प दिखा सकती है। आकलन या ताज़ा स्थिति के लिए इंटरनेट चाहिए; कोई परिणाम नहीं बनाया गया है।",
+      "hinglish": "Offline help options dikha sakti hai. Assessment ya current status ke liye connection chahiye; koi result banaya nahi gaya."
+    },
+    "symptomsChanged": {
+      "en": "Please verify the new observations again. Earlier assessment and verification have been cleared.",
+      "hi": "नए लक्षण फिर सत्यापित करें। पुराना आकलन और सत्यापन हटाया गया है।",
+      "hinglish": "Naye observations phir verify kijiye. Purana assessment aur verification clear hua hai."
+    },
+    "statusMissing": {
+      "en": "Open the specific health report yourself, then ask its status. I will not guess which report you mean.",
+      "hi": "संबंधित रिपोर्ट स्वयं खोलें, फिर उसकी स्थिति पूछें। मैं रिपोर्ट का अनुमान नहीं लगाऊँगा।",
+      "hinglish": "Sahi health report khud kholiye, phir status poochhiye. Main report guess nahi karunga."
+    },
+    "mixed": {
+      "en": "Describe one animal at a time. Please start again with that animal’s observations, without combining different animals.",
+      "hi": "एक समय में एक पशु के लक्षण बताइए। अलग पशुओं की जानकारी एक साथ न मिलाएं।",
+      "hinglish": "Ek samay mein ek animal ke symptoms batayein. Alag animals ki jaankari mix na karein."
+    }
+  },
+  "statuses": {
+    "reported": {
+      "en": "The observations have been recorded.",
+      "hi": "लक्षण दर्ज किए गए हैं।",
+      "hinglish": "Observations record ho gaye hain."
+    },
+    "triage": {
+      "en": "A preliminary assessment is recorded. This does not mean a veterinarian has examined the animal.",
+      "hi": "प्रारंभिक आकलन दर्ज है। इसका अर्थ यह नहीं कि डॉक्टर ने पशु की जांच कर ली है।",
+      "hinglish": "Preliminary assessment record hai. Iska matlab vet ne animal examine kar liya hai, aisa nahi."
+    },
+    "vet_assigned": {
+      "en": "A veterinarian is assigned in this application. This does not guarantee an appointment or arrival time.",
+      "hi": "एप्लिकेशन में पशु चिकित्सक नियुक्त हैं। इससे मिलने या पहुंचने के समय की गारंटी नहीं है।",
+      "hinglish": "App mein vet assigned hai. Appointment ya arrival time ki guarantee nahi hai."
+    },
+    "vet_review": {
+      "en": "Veterinary findings have been recorded. See the professional review section; this is not proof that someone is currently online.",
+      "hi": "पशु चिकित्सक के निष्कर्ष दर्ज हैं। पेशेवर समीक्षा देखें; इससे अभी ऑनलाइन होने का संकेत नहीं मिलता।",
+      "hinglish": "Vet findings record hain. Professional review dekhiye; isse abhi online hone ka pata nahi chalta."
+    },
+    "sample_requested": {
+      "en": "A veterinarian requested a laboratory test. Sample receipt is not yet established by this status.",
+      "hi": "प्रयोगशाला जांच मांगी गई है। इस स्थिति से नमूना पहुंचने की पुष्टि नहीं होती।",
+      "hinglish": "Lab test request hua hai. Is status se sample receive hone ki confirmation nahi hoti."
+    },
+    "lab_pending": {
+      "en": "The sample workflow is underway. A final laboratory result has not been recorded.",
+      "hi": "नमूने की जांच प्रक्रिया चल रही है। अंतिम परिणाम अभी दर्ज नहीं है।",
+      "hinglish": "Sample workflow chal raha hai. Final lab result abhi record nahi hai."
+    },
+    "confirmed": {
+      "en": "A positive laboratory result is recorded for this case. Outbreak confirmation is a separate authority decision.",
+      "hi": "इस मामले का सकारात्मक प्रयोगशाला परिणाम दर्ज है। प्रकोप की पुष्टि अधिकारी का अलग निर्णय है।",
+      "hinglish": "Is case ka positive lab result record hai. Outbreak confirmation authority ka alag decision hai."
+    },
+    "rejected": {
+      "en": "The requested laboratory category has a negative result. This is not a general clearance of the animal’s health.",
+      "hi": "मांगी गई जांच श्रेणी का परिणाम नकारात्मक है। यह पशु के पूरी तरह स्वस्थ होने का प्रमाण नहीं है।",
+      "hinglish": "Requested test category negative hai. Iska matlab animal ki poori health clear hai, aisa nahi."
+    },
+    "inconclusive": {
+      "en": "The test did not establish a definite result. Veterinary follow-up may be needed.",
+      "hi": "जांच से निश्चित परिणाम नहीं मिला। पशु चिकित्सक की आगे समीक्षा जरूरी हो सकती है।",
+      "hinglish": "Test ka definite result nahi mila. Veterinary follow-up ki zaroorat ho sakti hai."
+    },
+    "treatment": {
+      "en": "A veterinarian recorded treatment or control actions. Read those professional recommendations.",
+      "hi": "पशु चिकित्सक ने उपचार या नियंत्रण कार्रवाई दर्ज की है। उनकी सिफारिशें पढ़ें।",
+      "hinglish": "Vet ne treatment ya control actions record kiye hain. Unki recommendations padhiye."
+    },
+    "closed": {
+      "en": "This care episode is marked closed. New symptoms should be reported as a new observation.",
+      "hi": "यह देखभाल प्रकरण बंद दर्ज है। नए लक्षण नई रिपोर्ट में बताएं।",
+      "hinglish": "Yeh care episode closed hai. Naye symptoms nayi report mein batayein."
+    }
+  }
+}
