@@ -1,0 +1,13 @@
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.34,<1.0
+pymongo>=4.11,<5.0
+pydantic-settings>=2.8,<3.0
+PyJWT>=2.10,<3.0
+pwdlib[argon2]>=0.2,<1.0
+python-multipart>=0.0.20,<1.0
+email-validator>=2.2,<3.0
+scikit-learn>=1.6,<2.0
+joblib>=1.4,<2.0
+httpx>=0.28,<1.0
+pytest>=8.3,<10.0
+mongomock>=4.3,<5.0
