@@ -1,0 +1,221 @@
+{
+  "baseline_sensitivity": {
+    "dense_baseline_flagged": true,
+    "dense_baseline_score": 53,
+    "same_active_reports": 6,
+    "sparse_baseline_score": 66
+  },
+  "dataset_type": "constructed_synthetic_scenarios",
+  "engine_version": "outbreak-v1",
+  "evaluated_at": "2026-09-12T14:54:37.305319+00:00",
+  "false_alerts": {
+    "count": 0,
+    "negative_scenarios": 6,
+    "rate": 0.0
+  },
+  "field_validation": false,
+  "lead_time": {
+    "abnormal_alert_lead_hours": 18.0,
+    "count_only_reference_at": "2026-09-11T16:00:00+00:00",
+    "first_abnormal_alert_at": "2026-09-10T22:00:00+00:00",
+    "first_report_to_alert_hours": 12.0,
+    "first_suspected_at": "2026-09-11T10:00:00+00:00",
+    "reference": "Toy comparator: first sixth distinct similar local animal report in this exact synthetic replay. Not a field-surveillance benchmark.",
+    "suspected_alert_lead_hours": 6.0
+  },
+  "limitations": [
+    "Six designed negative and two positive scenarios cannot estimate a real-world false-alert or missed-outbreak rate.",
+    "All thresholds, disease labels and historical baselines are prototype simulation inputs.",
+    "Lead time compares two rules on the same known synthetic replay, not disease onset, veterinary detection or prospective surveillance.",
+    "Calculation timings measure only this local pure engine call, not network, queue, dispatch or field response latency."
+  ],
+  "missed_clusters": {
+    "count": 0,
+    "positive_scenarios": 2,
+    "rate": 0.0
+  },
+  "replay_trace": [
+    {
+      "observation_time": "2026-09-10T10:00:00+00:00",
+      "reports_received": 1,
+      "scores": [],
+      "states": []
+    },
+    {
+      "observation_time": "2026-09-10T16:00:00+00:00",
+      "reports_received": 2,
+      "scores": [],
+      "states": []
+    },
+    {
+      "observation_time": "2026-09-10T22:00:00+00:00",
+      "reports_received": 3,
+      "scores": [
+        72
+      ],
+      "states": [
+        "abnormal_cluster"
+      ]
+    },
+    {
+      "observation_time": "2026-09-11T04:00:00+00:00",
+      "reports_received": 4,
+      "scores": [
+        75
+      ],
+      "states": [
+        "abnormal_cluster"
+      ]
+    },
+    {
+      "observation_time": "2026-09-11T10:00:00+00:00",
+      "reports_received": 5,
+      "scores": [
+        80
+      ],
+      "states": [
+        "suspected_outbreak"
+      ]
+    },
+    {
+      "observation_time": "2026-09-11T16:00:00+00:00",
+      "reports_received": 6,
+      "scores": [
+        79
+      ],
+      "states": [
+        "suspected_outbreak"
+      ]
+    },
+    {
+      "observation_time": "2026-09-11T22:00:00+00:00",
+      "reports_received": 7,
+      "scores": [
+        75
+      ],
+      "states": [
+        "suspected_outbreak"
+      ]
+    },
+    {
+      "observation_time": "2026-09-12T00:00:00+00:00",
+      "reports_received": 8,
+      "scores": [
+        74
+      ],
+      "states": [
+        "suspected_outbreak"
+      ]
+    },
+    {
+      "observation_time": "2026-09-12T02:00:00+00:00",
+      "reports_received": 9,
+      "scores": [
+        77
+      ],
+      "states": [
+        "suspected_outbreak"
+      ]
+    },
+    {
+      "observation_time": "2026-09-12T06:00:00+00:00",
+      "reports_received": 10,
+      "scores": [
+        77
+      ],
+      "states": [
+        "suspected_outbreak"
+      ]
+    },
+    {
+      "observation_time": "2026-09-12T10:00:00+00:00",
+      "reports_received": 11,
+      "scores": [
+        77
+      ],
+      "states": [
+        "suspected_outbreak"
+      ]
+    }
+  ],
+  "scenario_behavior": {
+    "A_geographically_distant": {
+      "calculation_ms": 0.249,
+      "flagged_groups": 0,
+      "input_reports": 6,
+      "intensity": [],
+      "scores": [],
+      "states": []
+    },
+    "B_months_apart": {
+      "calculation_ms": 0.076,
+      "flagged_groups": 0,
+      "input_reports": 6,
+      "intensity": [],
+      "scores": [],
+      "states": []
+    },
+    "C_similar_recent_cluster": {
+      "calculation_ms": 0.448,
+      "flagged_groups": 1,
+      "input_reports": 6,
+      "intensity": [
+        "HIGH"
+      ],
+      "localization_error_km": 0.026327856557239602,
+      "scores": [
+        66
+      ],
+      "states": [
+        "suspected_outbreak"
+      ]
+    },
+    "D_rapid_concentration": {
+      "calculation_ms": 0.902,
+      "flagged_groups": 1,
+      "input_reports": 11,
+      "intensity": [
+        "CRITICAL"
+      ],
+      "localization_error_km": 0.0526557131117629,
+      "scores": [
+        95
+      ],
+      "states": [
+        "suspected_outbreak"
+      ]
+    },
+    "duplicate_single_animal": {
+      "calculation_ms": 0.117,
+      "flagged_groups": 0,
+      "input_reports": 12,
+      "intensity": [],
+      "scores": [],
+      "states": []
+    },
+    "future_observations": {
+      "calculation_ms": 0.057,
+      "flagged_groups": 0,
+      "input_reports": 6,
+      "intensity": [],
+      "scores": [],
+      "states": []
+    },
+    "symptom_disagreement": {
+      "calculation_ms": 0.129,
+      "flagged_groups": 0,
+      "input_reports": 6,
+      "intensity": [],
+      "scores": [],
+      "states": []
+    },
+    "unrelated_categories": {
+      "calculation_ms": 0.071,
+      "flagged_groups": 0,
+      "input_reports": 6,
+      "intensity": [],
+      "scores": [],
+      "states": []
+    }
+  }
+}

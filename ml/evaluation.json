@@ -1,0 +1,116 @@
+{
+  "accuracy": 0.8566666666666667,
+  "classes": [
+    "lsd",
+    "fmd",
+    "respiratory",
+    "gastrointestinal",
+    "undifferentiated"
+  ],
+  "clinical_validation": false,
+  "confusion_matrix": [
+    [
+      229,
+      1,
+      2,
+      1,
+      7
+    ],
+    [
+      1,
+      224,
+      3,
+      3,
+      9
+    ],
+    [
+      2,
+      2,
+      222,
+      3,
+      11
+    ],
+    [
+      3,
+      2,
+      1,
+      209,
+      25
+    ],
+    [
+      26,
+      17,
+      23,
+      30,
+      144
+    ]
+  ],
+  "dataset_type": "synthetic",
+  "evaluated_at": "2026-09-11T18:10:45.579610+00:00",
+  "evaluation_scope": "RandomForest classifier on independently generated held-out synthetic rows; not complete triage pipeline or clinical performance.",
+  "f1_macro": 0.8521784210521661,
+  "generator_version": "synthetic-livestock-v1",
+  "limitations": [
+    "Synthetic latent classes and observation frequencies are engineering assumptions.",
+    "A shared generator limits distribution-shift evidence despite separate random samples.",
+    "Model scores are uncalibrated; no sensitivity, specificity or accuracy claim on real livestock is supported.",
+    "Rules constrain live suggestions by species, cardinal symptoms and uncertainty; classifier metrics do not evaluate these postprocessing rules."
+  ],
+  "model_version": "synthetic-rf-v1",
+  "per_class": {
+    "accuracy": 0.8566666666666667,
+    "fmd": {
+      "f1-score": 0.9218106995884774,
+      "precision": 0.9105691056910569,
+      "recall": 0.9333333333333333,
+      "support": 240.0
+    },
+    "gastrointestinal": {
+      "f1-score": 0.8600823045267489,
+      "precision": 0.8495934959349594,
+      "recall": 0.8708333333333333,
+      "support": 240.0
+    },
+    "lsd": {
+      "f1-score": 0.9141716566866267,
+      "precision": 0.8773946360153256,
+      "recall": 0.9541666666666667,
+      "support": 240.0
+    },
+    "macro avg": {
+      "f1-score": 0.8521784210521661,
+      "precision": 0.851342653317357,
+      "recall": 0.8566666666666667,
+      "support": 1200.0
+    },
+    "respiratory": {
+      "f1-score": 0.9042769857433809,
+      "precision": 0.8844621513944223,
+      "recall": 0.925,
+      "support": 240.0
+    },
+    "undifferentiated": {
+      "f1-score": 0.6605504587155964,
+      "precision": 0.7346938775510204,
+      "recall": 0.6,
+      "support": 240.0
+    },
+    "weighted avg": {
+      "f1-score": 0.8521784210521661,
+      "precision": 0.8513426533173569,
+      "recall": 0.8566666666666667,
+      "support": 1200.0
+    }
+  },
+  "precision_macro": 0.851342653317357,
+  "recall_macro": 0.8566666666666667,
+  "split": {
+    "heldout_rows": 1200,
+    "heldout_seed": 26129,
+    "heldout_sha256": "ddc37f6e34be9f9f6f6aa1f3104f474c189f0fe32087c37bdf4a0ddf62bdaff5",
+    "overlapping_feature_vectors": 0,
+    "training_rows": 4000,
+    "training_seed": 26128,
+    "training_sha256": "7b2c3b00b2edba128b8bfafc131b306cacf19a3b7c095924bfdd3fabc4caef02"
+  }
+}
