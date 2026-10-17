@@ -1,0 +1,165 @@
+import { test, expect } from '@playwright/test'
+import type { Page } from '@playwright/test'
+
+const panel=(page:Page)=>page.getByRole('region',{name:'PashuMitra companion'})
+async function login(page:Page,role='Farmer') {
+  await page.goto('/login')
+  await page.getByRole('button',{name:role,exact:true}).click()
+  await expect(page.getByRole('button',{name:'Open PashuMitra',exact:true})).toBeVisible()
+}
+async function open(page:Page,consent=true){
+  await page.getByRole('button',{name:'Open PashuMitra',exact:true}).click()
+  if(consent)await panel(page).getByRole('checkbox',{name:/Allow current-page guidance/}).check()
+}
+async function ask(page:Page,question:string){await page.getByRole('textbox',{name:'Ask PashuMitra'}).fill(question);await panel(page).getByRole('button',{name:'Ask',exact:true}).click()}
+async function formState(page:Page){return page.locator('main form').evaluateAll(forms=>forms.map(form=>Array.from(form.querySelectorAll('input,select,textarea')).map(control=>({name:(control as HTMLInputElement).name,value:(control as HTMLInputElement).value,checked:(control as HTMLInputElement).checked}))))}
+async function queueState(page:Page){return page.evaluate(()=>new Promise<unknown[]>((resolve,reject)=>{const request=indexedDB.open('pashuraksha-offline');request.onerror=()=>reject(request.error);request.onsuccess=()=>{const db=request.result;if(!db.objectStoreNames.contains('reports')){db.close();resolve([]);return}const rows=db.transaction('reports','readonly').objectStore('reports').getAll();rows.onsuccess=()=>{db.close();resolve(rows.result)};rows.onerror=()=>reject(rows.error)}}))}
+
+test('consent gates page inspection and guide cannot navigate, select, submit or queue',async({page})=>{
+  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message))
+  await login(page)
+  await page.getByRole('link',{name:'Report symptoms',exact:true}).first().click()
+  await expect(page.locator('select[name=animal_id]')).toBeVisible()
+  const before=await formState(page),queueBefore=await queueState(page),url=page.url(),mutations:string[]=[]
+  page.on('request',r=>{if(['POST','PUT','PATCH','DELETE'].includes(r.method())&&!r.url().includes('/assistant/'))mutations.push(r.url())})
+  await page.evaluate(()=>{const original=document.querySelectorAll.bind(document);(window as any).guideReads=0;document.querySelectorAll=function(selector:string){if(selector.startsWith('[data-guide='))(window as any).guideReads++;return original(selector)} as typeof document.querySelectorAll})
+  await open(page,false)
+  await ask(page,'select fever and submit report for me')
+  await expect(page.getByTestId('mitra-highlight')).toHaveCount(0)
+  expect(await page.evaluate(()=>(window as any).guideReads)).toBe(0)
+  await panel(page).getByRole('checkbox',{name:/Allow current-page guidance/}).check()
+  await ask(page,'which option for fever?')
+  await expect(page.getByTestId('mitra-highlight')).toBeVisible()
+  expect(await page.getByTestId('mitra-highlight').evaluate(el=>getComputedStyle(el).pointerEvents)).toBe('none')
+  expect(page.url()).toBe(url);expect(await formState(page)).toEqual(before);expect(mutations).toEqual([])
+  await page.screenshot({path:'../.runtime/screenshots/mitra-guide-desktop.png',fullPage:true})
+  await page.getByRole('button',{name:'Stop PashuMitra guidance'}).click()
+  await ask(page,'fever and not eating for two days')
+  const observations=page.getByRole('region',{name:'PashuMitra observations'})
+  await expect(observations).toContainText('48 hours')
+  await expect(observations.getByRole('button',{name:/Show/})).toHaveCount(0)
+  await observations.getByRole('button',{name:'Load my animals for verification'}).click()
+  await page.getByRole('combobox',{name:'PashuMitra animal'}).selectOption('demo-animal-01')
+  await observations.getByRole('button',{name:'These observations are correct'}).click()
+  await expect(observations.locator('.mitra-concern')).toContainText('urgent')
+  expect(page.url()).toBe(url);expect(await formState(page)).toEqual(before);expect(mutations).toEqual([])
+  await page.screenshot({path:'../.runtime/screenshots/mitra-conversation-desktop.png',fullPage:true})
+  await page.getByRole('combobox',{name:'PashuMitra animal'}).selectOption({index:2})
+  await expect(observations).toHaveCount(0)
+  expect(await queueState(page)).toEqual(queueBefore)
+  await ask(page,'fever')
+  await page.getByRole('button',{name:'Minimize PashuMitra',exact:true}).first().click()
+  await page.locator('select[name=animal_id]').selectOption('demo-animal-01')
+  await open(page,false);await expect(observations).toHaveCount(0)
+  await page.keyboard.press('Escape');await expect(panel(page)).toHaveCount(0)
+  expect(errors).toEqual([])
+})
+
+test('mobile guide points to menu, respects reduced motion and account isolation',async({page})=>{
+  await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'})
+  await login(page);await open(page)
+  await panel(page).getByRole('button',{name:'Report symptoms',exact:true}).click()
+  await expect(page.getByTestId('mitra-highlight')).toBeVisible()
+  const box=await page.getByTestId('mitra-highlight').boundingBox(),menu=await page.getByRole('button',{name:'Open menu',exact:true}).boundingBox()
+  expect(box?.x).toBe(menu?.x)
+  expect(await page.locator('.mitra-traveller').evaluate(el=>getComputedStyle(el).transitionDuration)).toBe('0s')
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
+  await page.screenshot({path:'../.runtime/screenshots/mitra-mobile.png',fullPage:true})
+  // The user opens the menu, then follows the real link; the guide itself does neither.
+  await page.getByRole('button',{name:'Open menu',exact:true}).click()
+  await page.getByRole('link',{name:'Report symptoms',exact:true}).first().click()
+  await expect(page).toHaveURL(/\/report$/);await expect(page.getByTestId('mitra-highlight')).toHaveCount(0)
+  await ask(page,'maybe fever')
+  await page.keyboard.press('Escape')
+  await page.getByRole('button',{name:'Sign out',exact:true}).click()
+  await expect(page).toHaveURL(/\/login$/)
+  await page.getByRole('button',{name:'Laboratory',exact:true}).click()
+  await open(page,false)
+  await expect(panel(page).getByRole('checkbox',{name:/Allow current-page guidance/})).not.toBeChecked()
+  await expect(panel(page)).not.toContainText('maybe fever')
+  await expect(panel(page).getByRole('button',{name:'Requests in your district',exact:true})).toBeVisible()
+})
+
+test('voice starts only after consent and click, transcribes once, stops and ignores stale results',async({page})=>{
+  await page.addInitScript(()=>{
+    const w=window as any;w.speechStarts=0;w.speechAborts=0
+    w.SpeechRecognition=class {onresult:any;onerror:any;onend:any;start(){w.speechStarts++;w.currentRecognition=this}abort(){w.speechAborts++}}
+    w.spoken=[]
+    w.SpeechSynthesisUtterance=class {text:string;constructor(value:string){this.text=value}}
+    Object.defineProperty(window,'speechSynthesis',{value:{getVoices:()=>[{lang:'en-IN',localService:true},{lang:'hi-IN',localService:true}],cancel:()=>{},speak:(utterance:any)=>{w.spoken.push(utterance.text);utterance.onstart?.();utterance.onend?.()}}})
+  })
+  await login(page);await open(page,false)
+  expect(await page.evaluate(()=>(window as any).speechStarts)).toBe(0)
+  await panel(page).getByRole('button',{name:'Talk to PashuMitra'}).click()
+  expect(await page.evaluate(()=>(window as any).speechStarts)).toBe(0)
+  await panel(page).getByRole('checkbox',{name:/Allow browser speech processing/}).check()
+  await panel(page).getByRole('button',{name:'Talk to PashuMitra'}).click()
+  await expect(panel(page).getByRole('button',{name:'Stop listening'})).toBeVisible()
+  await page.evaluate(()=>(window as any).currentRecognition.onresult({results:[[{transcript:'fever and not eating for two days'}]]}))
+  await expect(panel(page)).toContainText('48 hours')
+  expect(await page.evaluate(()=>(window as any).speechStarts)).toBe(1)
+  await panel(page).getByRole('button',{name:'Unmute PashuMitra'}).click()
+  expect((await page.evaluate(()=>(window as any).spoken)).length).toBeGreaterThan(0)
+  await panel(page).getByRole('button',{name:'Talk to PashuMitra'}).click()
+  await page.evaluate(()=>(window as any).currentRecognition.onerror({error:'not-allowed'}))
+  await expect(panel(page)).toContainText('Microphone permission was denied')
+  await panel(page).getByRole('button',{name:'Talk to PashuMitra'}).click()
+  await page.evaluate(()=>(window as any).staleResult=(window as any).currentRecognition.onresult)
+  await panel(page).getByRole('button',{name:'Close and clear PashuMitra'}).click()
+  await page.evaluate(()=>(window as any).staleResult({results:[[{transcript:'cough'}]]}))
+  await open(page,false);await expect(panel(page)).not.toContainText('48 hours');await expect(panel(page)).not.toContainText('Absent:')
+  expect(await page.evaluate(()=>(window as any).speechAborts)).toBe(3)
+  await panel(page).getByRole('checkbox',{name:/Allow browser speech processing/}).check()
+  await page.clock.install()
+  await panel(page).getByRole('button',{name:'Talk to PashuMitra'}).click()
+  await page.clock.fastForward(21000)
+  await expect(panel(page)).toContainText('Listening stopped after 20 seconds')
+  expect(await page.evaluate(()=>(window as any).speechStarts)).toBe(4)
+  await panel(page).getByRole('button',{name:'Talk to PashuMitra'}).click()
+  await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'))})
+  expect(await page.evaluate(()=>(window as any).speechAborts)).toBe(5)
+})
+
+test('unavailable voice, offline help and invalid server output fall back without actions',async({page,context})=>{
+  await page.addInitScript(()=>{Object.defineProperty(window,'SpeechRecognition',{value:undefined});Object.defineProperty(window,'webkitSpeechRecognition',{value:undefined})})
+  await login(page);await open(page)
+  await panel(page).getByRole('checkbox',{name:/Allow browser speech processing/}).check()
+  await panel(page).getByRole('button',{name:'Talk to PashuMitra'}).click()
+  await expect(panel(page)).toContainText('Voice input is unavailable')
+  await page.route('**/api/assistant/message',route=>route.fulfill({json:{intent:'report',target:'body',message_key:'point',source:'gemini',case_status:null,spokenText:'invented diagnosis'}}))
+  await ask(page,'xyz unsupported question');await expect(page.getByTestId('mitra-highlight')).toHaveCount(0)
+  await expect(panel(page).getByRole('log')).toContainText('Offline')
+  await context.setOffline(true)
+  await ask(page,'Photo kaha upload karu?')
+  await expect(page.getByTestId('mitra-highlight')).toBeVisible()
+  expect(new URL(page.url()).pathname).toBe('/')
+})
+
+test('current report status comes from an authorized live case',async({page})=>{
+  await login(page)
+  await page.getByRole('link',{name:/Open report for/}).first().click()
+  await expect(page).toHaveURL(/\/cases\/[^/]+$/)
+  const url=page.url();await open(page)
+  const response=page.waitForResponse(r=>r.url().endsWith('/assistant/message'))
+  await ask(page,'my report status')
+  const result=await (await response).json()
+  expect(result.case_status).toBeTruthy();expect(result.target).toBe('case-status')
+  expect(page.url()).toBe(url)
+  await page.getByRole('button',{name:'Stop PashuMitra guidance'}).click()
+  await expect(panel(page).getByRole('log')).not.toContainText('No selected report')
+})
+
+test('late backend reply cannot revive a dismissed assistant',async({page})=>{
+  await login(page);await open(page)
+  let finish!:()=>void
+  const pending=new Promise<void>(resolve=>{finish=resolve})
+  let arrived!:()=>void
+  const received=new Promise<void>(resolve=>{arrived=resolve})
+  await page.route('**/api/assistant/message',async route=>{arrived();await pending;await route.fulfill({json:{intent:'report',target:'nav-report',message_key:'point',source:'local',case_status:null}}).catch(()=>{})})
+  await ask(page,'xyz unsupported question');await received
+  await panel(page).getByRole('button',{name:'Close and clear PashuMitra'}).click()
+  finish();await expect(panel(page)).toHaveCount(0)
+  await open(page,false)
+  await expect(page.getByTestId('mitra-highlight')).toHaveCount(0)
+  await expect(panel(page).getByRole('checkbox',{name:/Allow current-page guidance/})).not.toBeChecked()
+})
